@@ -9,24 +9,15 @@ pipeline {
         CHANGES = compareGitHash()
     }
 
+    expression {
+        return env.shouldBuild = CHANGES
+    }
+
     stages {
-        stage ('scm: check') {
+        stage ('docker: build') {
             steps {
                 script {
-                    if (!CHANGES) {
-                        currentBuild.result = 'SUCCESS'
-                        return
-                    }
-                }
-            }
-
-            stages {
-                stage ('docker: build') {
-                    steps {
-                        script {
-                            echo 'works'
-                        }
-                    }
+                    echo 'works'
                 }
             }
         }
