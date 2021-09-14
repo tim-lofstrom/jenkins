@@ -6,7 +6,7 @@ pipeline {
         stage ("scm: check") {
             steps {
                 script {
-                    echo "works"
+                    echo "${GIT_COMMIT}"
                 }
             }
         }
