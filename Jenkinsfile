@@ -6,7 +6,7 @@ pipeline {
         stage ("scm: check") {
             steps {
                 script {
-                    echo "${currentBuild.previousSuccessfulBuild.branch}"
+                    echo "${currentBuild.previousSuccessfulBuild}"
                     echo "${GIT_COMMIT}"
                 }
             }
