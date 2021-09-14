@@ -11,7 +11,7 @@ pipeline {
             }
         }
 
-        stage ("npm: install") {
+        stage ("docker: build") {
             steps {
                 script {
                     echo "works"
@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-        stage ("npm: test") {
+        stage ("docker: push registry") {
             steps {
                 script {
                     echo "works"
@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-        stage ("scm: coverage") {
+        stage ("openshift: deploy") {
             steps {
                 script {
                     echo "works"
