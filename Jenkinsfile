@@ -12,10 +12,7 @@ pipeline {
     stages {
         stage ('docker: build') {
             when {
-                expression {
-                    echo "${CHANGES}"
-                    return CHANGES
-                }
+                environment name: 'CHANGES', value: true
             }
             steps {
                 script {
