@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage ('docker: build') {
             when {
-                CHANGES
+                CHANGES == true
             }
             steps {
                 script {
