@@ -9,17 +9,14 @@ pipeline {
         CHANGES = compareGitHash()
     }
 
-    script {
-        if (!CHANGES) {
-            currentBuild.result = 'SUCCESS'
-            return
-        }
-    }
-
     stages {
         stage ('scm: check') {
             steps {
                 script {
+                    if (!CHANGES) {
+                        currentBuild.result = 'SUCCESS'
+                        return
+                    }
                 }
             }
         }
