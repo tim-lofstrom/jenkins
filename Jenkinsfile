@@ -1,9 +1,13 @@
+def CompareGitHash(){
+    return "${GIT_COMMIT}" != "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}";
+}
+
 pipeline {
     
     agent any
 
     environment {
-        CHANGES = "${GIT_COMMIT}" != "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
+        CHANGES = CompareGitHash()
     }
 
 
