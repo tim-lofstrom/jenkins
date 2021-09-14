@@ -2,18 +2,16 @@ pipeline {
     
     agent any
 
+    environment {
+        CHANGES = ("${GIT_COMMIT}" != "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}")
+    }
+
+    if (!CHANGES) {
+        currentBuild.result = 'SUCCESS'
+        return
+    }
+
     stages {
-        stage ("scm: check") {
-            steps {
-                script {
-                    def noChanges = ("${GIT_COMMIT}" == "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}")
-                    if (noChanges) {
-                        currentBuild.result = 'SUCCESS'
-                        return
-                    }
-                }
-            }
-        }
 
         stage ("docker: build") {
             steps {
