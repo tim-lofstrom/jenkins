@@ -1,35 +1,35 @@
-def CompareGitHash(){
-    return "${GIT_COMMIT}" != "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}";
+def compareGitHash() {
+    return "${GIT_COMMIT}" != "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
 }
 
 pipeline {
-    
     agent any
 
     environment {
-        CHANGES = CompareGitHash()
+        CHANGES = compareGitHash()
     }
 
-
-                    if (!CHANGES) {
-                        currentBuild.result = 'SUCCESS'
-                        return
-                    }
+    script {
+        if (!CHANGES) {
+            currentBuild.result = 'SUCCESS'
+            return
+        }
+    }
 
     stages {
-        stage ("scm: check") {
+        stage ('scm: check') {
             steps {
                 script {
                 }
             }
         }
 
-        stage ("docker: build") {
-        steps {
-        script {
-        echo "works"
-        }
-        }
+        stage ('docker: build') {
+            steps {
+                script {
+                    echo 'works'
+                }
+            }
         }
     }
 }
