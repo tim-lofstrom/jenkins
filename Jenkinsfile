@@ -9,13 +9,12 @@ pipeline {
         CHANGES = compareGitHash()
     }
 
-    when {
-                expression {
-                    return CHANGES == 'true'
-                }
-    }
-
     stages {
+    when {
+        expression {
+            return CHANGES == 'true'
+        }
+    }
         stage ('docker: build') {
             steps {
                 script {
