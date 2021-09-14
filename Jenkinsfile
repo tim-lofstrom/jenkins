@@ -9,16 +9,11 @@ pipeline {
         CHANGES = compareGitHash()
     }
 
-    parameters {
-        booleanParam(defaultValue: true, description: 'Execute pipeline?', name: 'shouldBuild')
-    }
-
-    expression {
-        return env.shouldBuild = CHANGES
-    }
-
     stages {
         stage ('docker: build') {
+            when {
+                CHANGES
+            }
             steps {
                 script {
                     echo 'works'
