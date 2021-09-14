@@ -9,6 +9,10 @@ pipeline {
         CHANGES = compareGitHash()
     }
 
+    parameters {
+        booleanParam(defaultValue: true, description: 'Execute pipeline?', name: 'shouldBuild')
+    }
+
     expression {
         return env.shouldBuild = CHANGES
     }
