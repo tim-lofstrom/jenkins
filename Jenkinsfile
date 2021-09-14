@@ -10,12 +10,12 @@ pipeline {
     }
 
     stages {
-    when {
-        expression {
-            return CHANGES == 'true'
-        }
-    }
         stage ('docker: build') {
+            when {
+                expression {
+                    return CHANGES == 'true'
+                }
+            }
             steps {
                 script {
                     echo 'works'
