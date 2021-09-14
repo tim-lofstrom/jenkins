@@ -12,7 +12,9 @@ pipeline {
     stages {
         stage ('docker: build') {
             when {
-                CHANGES == true
+                expression {
+                    return CHANGES
+                }
             }
             steps {
                 script {
