@@ -11,12 +11,10 @@ pipeline {
 
     stages {
 
-        script {
             if (!CHANGES) {
                 currentBuild.result = 'SUCCESS'
                 return
             }
-        }
 
         stage ('docker: build') {
             steps {
