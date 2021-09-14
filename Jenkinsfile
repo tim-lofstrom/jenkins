@@ -11,10 +11,12 @@ pipeline {
 
     stages {
         stage ('scm: check') {
-            script {
-                if (!CHANGES) {
-                    currentBuild.result = 'SUCCESS'
-                    return
+            steps {
+                script {
+                    if (!CHANGES) {
+                        currentBuild.result = 'SUCCESS'
+                        return
+                    }
                 }
             }
 
