@@ -6,7 +6,7 @@ pipeline {
         stage ("scm: check") {
             steps {
                 script {
-                    echo "${currentBuild.previousSuccessfulBuild.getId()}"
+                    echo "${currentBuild.previousSuccessfulBuild.getBuildVariables().GIT_COMMIT}"
                     echo "${GIT_COMMIT}"
                 }
             }
