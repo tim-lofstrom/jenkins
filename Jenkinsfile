@@ -6,7 +6,7 @@ pipeline {
         stage ("scm: check") {
             steps {
                 script {
-                    echo "${currentBuild.changeSets}"
+                    echo "${currentBuild.changeSets.getItems()}"
                     echo "${GIT_COMMIT}"
                 }
             }
