@@ -13,6 +13,7 @@ pipeline {
         stage ('docker: build') {
             when {
                 expression {
+                    echo "${CHANGES}"
                     return CHANGES
                 }
             }
