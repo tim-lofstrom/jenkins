@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        CHANGES = ("${GIT_COMMIT}" != "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}")
+        CHANGES = "${GIT_COMMIT}" != "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
     }
 
 
