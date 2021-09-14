@@ -6,7 +6,7 @@ pipeline {
         stage ("scm: check") {
             steps {
                 script {
-                    echo "${currentBuild.previousBuild.GIT_COMMIT}"
+                    echo "${currentBuild.previousBuild}"
                     echo "${GIT_COMMIT}"
                 }
             }
