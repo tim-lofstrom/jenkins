@@ -11,21 +11,21 @@ pipeline {
 
     stages {
         stage ('scm: check') {
-            steps {
-                script {
-                    if (!CHANGES) {
-                        currentBuild.result = 'SUCCESS'
-                        return
-                    }
-                }
-
-                        stage ('docker: build') {
-            steps {
-                script {
-                    echo 'works'
+            script {
+                if (!CHANGES) {
+                    currentBuild.result = 'SUCCESS'
+                    return
                 }
             }
-        }
+
+            stages {
+                stage ('docker: build') {
+                    steps {
+                        script {
+                            echo 'works'
+                        }
+                    }
+                }
             }
         }
     }
