@@ -6,8 +6,11 @@ pipeline {
         stage ("scm: check") {
             steps {
                 script {
-                    echo "${GIT_COMMIT}"
-                    echo "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
+                    def noChanges = ("${GIT_COMMIT}" == "${GIT_PREVIOUS_SUCCESSFUL_COMMIT}")
+                    if (noChanges) {
+                        currentBuild.result = 'SUCCESS'
+                        error('No Changes.')
+                    }
                 }
             }
         }
